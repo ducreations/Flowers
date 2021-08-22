@@ -6,7 +6,7 @@
       <th>Flower name</th>
       <th>Available quantity</th>
       <th>Flower price</th>
-      <th>Action</th>
+      <th colspan="2">Action</th>
     </tr>
   </thead>
   <tbody>
@@ -15,7 +15,12 @@
         <td><%= flower.name %></td>
         <td><%= flower.qty %> pieces</td>
         <td>₱ <%= flower.price %></td>
-        <td><%= link_to 'Delete', flower_path(flower), method: :delete, class:"btn btn-sm btn-outline-danger" %></td>
+        <td><%= link_to 'Edit', edit_flower_path(flower),
+          class:"btn btn-sm btn-outline-info" %> 
+        <%= link_to 'Delete', flower_path(flower),
+          method: :delete,
+          class:"btn btn-sm btn-outline-danger" %>
+        </td>
       </tr>
     <% end %>
   </tbody>

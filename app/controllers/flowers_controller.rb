@@ -1,6 +1,6 @@
 class FlowersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_flower, only: [:destroy]
+  before_action :set_flower, only: [:edit, :update, :destroy]
 
   def index
     @flowers = Flower.all
@@ -8,6 +8,15 @@ class FlowersController < ApplicationController
 
   def new
     @flower = Flower.new
+  end
+
+  def edit
+  end
+
+  def update
+    if @flower.update(flower_params)
+      redirect_to flowers_path, notice: "#{@flower.name}'s info is successfully updated"
+    end
   end
 
   def create

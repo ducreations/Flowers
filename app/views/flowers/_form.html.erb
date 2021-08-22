@@ -1,0 +1,26 @@
+<div class="container">
+
+<p>Fill out the form</p>
+<%= form_for @flower do |f| %>
+  <div class="field">
+    Flower name <br />
+    <%= f.text_field :name, required: true, autofocus: true, class:"form-control" %>
+  </div> <br />
+
+  <div class="field">
+    No. of this flower available <br />
+    <%= f.number_field :qty, min: 0, max: 1000000, required: true, class:"form-control" %>
+  </div> <br />
+
+  <div class="field">
+    Flower price <br />
+    <%= f.text_field :price, placeholder: "₱", required: true, class:"form-control" %>
+  </div> <br />
+
+  <div class="actions">
+    <%= f.submit "Save & continue", class:"btn btn-sm btn-outline-success" %> 
+    <%= link_to 'Cancel', flowers_path, class:"btn btn-sm btn-outline-secondary" %>
+  </div> <br />
+<% end %>
+
+</div>

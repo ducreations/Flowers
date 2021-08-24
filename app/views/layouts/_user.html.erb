@@ -1,0 +1,10 @@
+<% if user_signed_in? %>
+  <%= current_user.username %>
+  <%= link_to 'Log out', destroy_user_session_path, method: :delete, class:"btn btn-sm btn-outline-dark" %> <br />
+<% end %>
+
+<% if current_user&.admin %>
+  <%= "Seller View" %>
+<% else %>
+  <%= "Buyer View" %>
+<% end %>

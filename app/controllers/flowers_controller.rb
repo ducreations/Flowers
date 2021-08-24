@@ -1,6 +1,6 @@
 class FlowersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_flower, only: [:edit, :update, :destroy]
+  before_action :set_flower, only: [:show, :edit, :update, :destroy]
 
   def index
     @flowers = Flower.all
@@ -13,6 +13,9 @@ class FlowersController < ApplicationController
   def edit
   end
 
+  def show
+  end
+
   def update
     if @flower.update(flower_params)
       redirect_to flowers_path, notice: "#{@flower.name}'s info is successfully updated"
@@ -22,7 +25,7 @@ class FlowersController < ApplicationController
   def create
     @flower = Flower.new(flower_params)
     if @flower.save
-      redirect_to flowers_path, notice: "#{@flower.name} successfully added"
+      redirect_to flowers_path, notice: "#{@flower.name} is successfully added"
     else
       render :new
     end
@@ -30,7 +33,7 @@ class FlowersController < ApplicationController
 
   def destroy
     @flower.destroy
-      redirect_to flowers_path, alert: "#{@flower.name} removed from the shop"
+      redirect_to flowers_path, alert: "flower #{@flower.name} removed from the shop"
   end
 
   private

@@ -6,25 +6,34 @@
       <th>Flower name</th>
       <th>Available quantity</th>
       <th>Flower price</th>
-      <th colspan="2">Action</th>
+      <th>Action</th>
     </tr>
   </thead>
   <tbody>
     <% @flowers.each do |flower| %>
       <tr>
-        <td><%= flower.name %></td>
+        <td><%= link_to flower.name, flower_path(flower) %></td>
         <td><%= flower.qty %> pieces</td>
         <td>₱ <%= flower.price %></td>
-        <td><%= link_to 'Edit', edit_flower_path(flower),
-          class:"btn btn-sm btn-outline-info" %> 
-        <%= link_to 'Delete', flower_path(flower),
-          method: :delete,
-          class:"btn btn-sm btn-outline-danger" %>
-        </td>
+        <% if current_user&.admin %>
+          <td><%= link_to 'Delete', flower_path(flower),
+            method: :delete,
+            data: {confirm:"Are you sure?"},
+            class:"btn btn-sm btn-outline-danger" %>
+          </td>
+        <% else %>
+          <td><%= link_to 'Add to cart', carts_path,
+            class:"btn btn-sm btn-outline-success" %>
+          </td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<%= link_to 'Add flower', new_flower_path, class:"btn btn-sm btn-outline-success" %>
+<% if current_user&.admin %>
+  <%= link_to 'Add flower', new_flower_path,
+    class:"btn btn-sm btn-outline-success" %>
+<% end %>
+
 <%= link_to 'Home', root_path, class:"btn btn-sm btn-outline-secondary" %>

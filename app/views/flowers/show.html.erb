@@ -1,0 +1,18 @@
+<div class="jumbotron">
+  <h1 class="display-4"><%= @flower.name %></h1>
+  <p class="lead">Purity</p>
+  <ul><li> White roses traditionally are often used at weddings. This is because they represent purity, making them a perfect option for marriage. They also represent youthfulness, innocence, young love, and loyalty.</li></ul>
+  <hr class="my-4">
+      <p>Available quantity: <strong><%= @flower.qty %></strong> pieces</p>
+      <p>Flower price: ₱<strong><%= @flower.price %></strong></p>
+  <p class="lead">
+    <a>
+      <% if current_user&.admin %>
+        <%= link_to 'Edit', edit_flower_path(@flower),
+          class:"btn btn-sm btn-outline-info" %>
+      <% end %>
+        <%= link_to 'Back', flowers_path,
+          class:"btn btn-sm btn-outline-secondary" %>
+    </a>
+  </p>
+</div>

@@ -1,3 +1,7 @@
 <h1>Homepage</h1>
-<p>Seller view</p>
-<%= link_to 'Flower shop', flowers_path, class:"btn btn-sm btn-outline-primary" %>
+
+<% if current_user&.admin %>
+  <%= link_to "#{current_user.username}'s flower shop", flowers_path, class:"btn btn-sm btn-outline-primary" %>
+<% else %>
+  <%= link_to 'Shop flowers', flowers_path, class:"btn btn-sm btn-outline-primary" %>
+<% end %>
